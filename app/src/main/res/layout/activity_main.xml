@@ -97,4 +97,15 @@
         android:layout_alignTop="@+id/savedLongitudeLabel"
         android:layout_toEndOf="@+id/saveLocation" />
 
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOn="Geofence active"
+        android:textOff="Geofence inactive"
+        android:id="@+id/activateGeofence"
+        android:layout_below="@+id/savedLongitudeLabel"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="50dp"
+        android:layout_alignEnd="@+id/saveLocation" />
+
 </RelativeLayout>
