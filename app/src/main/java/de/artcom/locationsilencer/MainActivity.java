@@ -16,6 +16,7 @@ import android.widget.ToggleButton;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.Geofence;
+import com.google.android.gms.location.GeofencingRequest;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
@@ -104,6 +105,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         ((TextView) findViewById(R.id.savedLongitude)).setText(longitude);
 
         findViewById(R.id.activateGeofence).setEnabled(true);
+    }
+
+    private GeofencingRequest createGeofencingRequest() {
+        return new GeofencingRequest.Builder()
+                .setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER)
+                .addGeofence(createGeofence())
+                .build();
     }
 
     private Geofence createGeofence() {
