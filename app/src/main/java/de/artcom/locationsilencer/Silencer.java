@@ -9,6 +9,7 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingEvent;
 
 public class Silencer extends IntentService{
@@ -23,7 +24,7 @@ public class Silencer extends IntentService{
     protected void onHandleIntent(Intent intent) {
         Log.d(TAG, "onHandleIntent");
         GeofencingEvent geofencingEvent = GeofencingEvent.fromIntent(intent);
-
+        Geofence geofence = geofencingEvent.getTriggeringGeofences().get(0);
 
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
