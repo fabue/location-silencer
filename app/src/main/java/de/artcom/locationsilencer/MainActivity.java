@@ -114,6 +114,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 createPendingIntent());
     }
 
+    private void deactivateGeofence() {
+        LocationServices.GeofencingApi.removeGeofences(
+                mGoogleApiClient,
+                createPendingIntent());
+    }
+
     private GeofencingRequest createGeofencingRequest() {
         return new GeofencingRequest.Builder()
                 .setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER)
@@ -156,5 +162,4 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Log.d(TAG, "onConnectionFailed");
     }
-
 }
