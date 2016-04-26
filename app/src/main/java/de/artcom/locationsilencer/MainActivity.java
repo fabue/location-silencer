@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     public static final int LOCATION_UPDATE_FASTEST_INTERVAL = 2000;
 
     private GoogleApiClient mGoogleApiClient;
+    private Location mSavedLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +70,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     public void saveLocationClicked(View view) {
         Log.d(TAG, "saveLocationClicked");
+
+        mSavedLocation = LocationServices.FusedLocationApi.getLastLocation(
+                mGoogleApiClient);
     }
 
     @Override
