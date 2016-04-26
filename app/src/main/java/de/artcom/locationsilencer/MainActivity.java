@@ -92,6 +92,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         String longitude = String.valueOf(mSavedLocation.getLongitude());
         ((TextView) findViewById(R.id.savedLatitude)).setText(latitude);
         ((TextView) findViewById(R.id.savedLongitude)).setText(longitude);
+
+        findViewById(R.id.activateGeofence).setEnabled(true);
     }
 
     @Override
