@@ -1,5 +1,6 @@
 package de.artcom.locationsilencer;
 
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,10 +11,11 @@ import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
-public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -55,6 +57,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         locationRequest.setInterval(LOCATION_UPDATE_INTERVAL);
         locationRequest.setFastestInterval(LOCATION_UPDATE_FASTEST_INTERVAL);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, locationRequest, this);
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        Log.d(TAG, "onLocationChanged");
     }
 
     @Override
@@ -71,4 +80,5 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Log.d(TAG, "onConnectionFailed");
     }
+
 }
