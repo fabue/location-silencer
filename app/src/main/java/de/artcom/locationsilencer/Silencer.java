@@ -1,7 +1,9 @@
 package de.artcom.locationsilencer;
 
 import android.app.IntentService;
+import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -22,8 +24,10 @@ public class Silencer extends IntentService{
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(Silencer.this, "Silencer started", Toast.LENGTH_LONG).show();
+                Toast.makeText(Silencer.this, "Silencing mobile", Toast.LENGTH_LONG).show();
             }
         });
+
+        ((AudioManager)getSystemService(Context.AUDIO_SERVICE)).setRingerMode(AudioManager.RINGER_MODE_SILENT);
     }
 }
