@@ -38,7 +38,11 @@ public class Silencer extends IntentService{
             }
         });
 
-        ((AudioManager)getSystemService(Context.AUDIO_SERVICE)).setRingerMode(AudioManager.RINGER_MODE_SILENT);
+        if(geofenceTransition == Geofence.GEOFENCE_TRANSITION_ENTER) {
+            setRingerMode(AudioManager.RINGER_MODE_SILENT);
+        } else if (geofenceTransition == Geofence.GEOFENCE_TRANSITION_EXIT) {
+            setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+        }
     }
 
     private String getTransitionString(int transitionType) {
@@ -50,5 +54,9 @@ public class Silencer extends IntentService{
             default:
                 return "Unknonw Geofence Transition";
         }
+    }
+
+    private void setRingerMode(int ringerMode) {
+        ((AudioManager)getSystemService(Context.AUDIO_SERVICE)).setRingerMode(ringerMode);
     }
 }
