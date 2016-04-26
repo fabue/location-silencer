@@ -15,6 +15,7 @@ import android.widget.ToggleButton;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
@@ -25,6 +26,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     public static final int LOCATION_UPDATE_INTERVAL = 5000;
     public static final int LOCATION_UPDATE_FASTEST_INTERVAL = 2000;
+
+    private static final String GEOFENCE_ID = "E-Business & Mobile Computing";
+    private static final float GEOFENCE_RADIUS = 108; // in meters
+    private static final int GEOFENCE_NOTIFICATION_RESPONSIVENESS = 1000;
+    public static final long GEOFENCE_EXPIRATION_IN_HOURS = 2;
+    public static final long GEOFENCE_EXPIRATION =
+            GEOFENCE_EXPIRATION_IN_HOURS * 60 * 60 * 1000;
 
     private GoogleApiClient mGoogleApiClient;
     private Location mSavedLocation;
@@ -96,6 +104,21 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         ((TextView) findViewById(R.id.savedLongitude)).setText(longitude);
 
         findViewById(R.id.activateGeofence).setEnabled(true);
+    }
+
+    private Geofence createGeofence() {
+        return new Geofence.Builder()
+                .setRequestId(GEOFENCE_ID)
+                .setCircularRegion(
+                        mSavedLocation.getLatitude(),
+                        mSavedLocation.getLongitude(),
+                        GEOFENCE_RADIUS
+                )
+                .setExpirationDuration(GEOFENCE_EXPIRATION)
+                .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER |
+                        Geofence.GEOFENCE_TRANSITION_EXIT)
+                .setNotificationResponsiveness(GEOFENCE_NOTIFICATION_RESPONSIVENESS)
+                .build();
     }
 
     private PendingIntent createPendingIntent() {
