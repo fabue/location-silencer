@@ -67,6 +67,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         ((TextView) findViewById(R.id.currentLongitude)).setText(longitude);
     }
 
+    public void saveLocationClicked(View view) {
+        Log.d(TAG, "saveLocationClicked");
+    }
+
     @Override
     public void onConnected(@Nullable Bundle bundle) {
         Log.d(TAG, "onConnected");
