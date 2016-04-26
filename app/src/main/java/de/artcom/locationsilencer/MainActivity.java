@@ -1,5 +1,7 @@
 package de.artcom.locationsilencer;
 
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -94,6 +96,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         ((TextView) findViewById(R.id.savedLongitude)).setText(longitude);
 
         findViewById(R.id.activateGeofence).setEnabled(true);
+    }
+
+    private PendingIntent createPendingIntent() {
+        Intent intent = new Intent(MainActivity.this, Silencer.class);
+        return PendingIntent.getService(MainActivity.this, 0, intent, PendingIntent.
+                FLAG_UPDATE_CURRENT);
     }
 
     @Override
