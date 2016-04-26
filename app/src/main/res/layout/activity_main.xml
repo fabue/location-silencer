@@ -102,6 +102,7 @@
         android:layout_height="wrap_content"
         android:textOn="Geofence active"
         android:textOff="Geofence inactive"
+        android:enabled="false"
         android:id="@+id/activateGeofence"
         android:layout_below="@+id/savedLongitudeLabel"
         android:layout_alignParentStart="true"
