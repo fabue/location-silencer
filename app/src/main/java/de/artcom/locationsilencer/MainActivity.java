@@ -56,9 +56,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    Log.d(TAG, "Geofence active");
+                    activateGeofence();
                 } else {
-                    Log.d(TAG, "Geofence inactive");
+                    deactivateGeofence();
                 }
             }
         });
