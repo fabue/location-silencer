@@ -73,6 +73,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
         mSavedLocation = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient);
+
+        String latitude = String.valueOf(mSavedLocation.getLatitude());
+        String longitude = String.valueOf(mSavedLocation.getLongitude());
+        ((TextView) findViewById(R.id.savedLatitude)).setText(latitude);
+        ((TextView) findViewById(R.id.savedLongitude)).setText(longitude);
     }
 
     @Override
