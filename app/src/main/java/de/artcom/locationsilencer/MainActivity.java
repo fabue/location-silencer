@@ -107,6 +107,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         findViewById(R.id.activateGeofence).setEnabled(true);
     }
 
+    private void activateGeofence(){
+        LocationServices.GeofencingApi.addGeofences(
+                mGoogleApiClient,
+                createGeofencingRequest(),
+                createPendingIntent());
+    }
+
     private GeofencingRequest createGeofencingRequest() {
         return new GeofencingRequest.Builder()
                 .setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER)
