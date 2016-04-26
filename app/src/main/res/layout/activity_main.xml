@@ -17,4 +17,39 @@
         android:onClick="getLocationUpdatesClicked"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Current Latitude"
+        android:id="@+id/currentLatitudeLabel"
+        android:layout_below="@+id/getLocationUpdates"
+        android:layout_alignStart="@+id/getLocationUpdates" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Current Longitude"
+        android:id="@+id/currentLongitudeLabel"
+        android:layout_below="@+id/currentLatitudeLabel"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="not set"
+        android:maxLength="10"
+        android:id="@+id/currentLatitude"
+        android:layout_above="@+id/currentLongitudeLabel"
+        android:layout_toEndOf="@+id/getLocationUpdates" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="not set"
+        android:maxLength="10"
+        android:id="@+id/currentLongitude"
+        android:layout_below="@+id/currentLatitude"
+        android:layout_alignStart="@+id/currentLatitude" />
+
 </RelativeLayout>

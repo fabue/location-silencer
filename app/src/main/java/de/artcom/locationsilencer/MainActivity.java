@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,5 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void getLocationUpdatesClicked(View view) {
         Log.d(TAG, "getLocationUpdatesClicked");
+        ((TextView) findViewById(R.id.currentLatitude)).setText("foo");
+        ((TextView) findViewById(R.id.currentLongitude)).setText("bar");
     }
 }
