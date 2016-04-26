@@ -26,13 +26,29 @@ public class Silencer extends IntentService{
         GeofencingEvent geofencingEvent = GeofencingEvent.fromIntent(intent);
         Geofence geofence = geofencingEvent.getTriggeringGeofences().get(0);
 
+        int geofenceTransition = geofencingEvent.getGeofenceTransition();
+        final String geofenceDescription =
+                getTransitionString(geofenceTransition) + ", " +
+                        geofence.getRequestId();
+
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(Silencer.this, "Silencing mobile", Toast.LENGTH_LONG).show();
+                Toast.makeText(Silencer.this, geofenceDescription, Toast.LENGTH_LONG).show();
             }
         });
 
         ((AudioManager)getSystemService(Context.AUDIO_SERVICE)).setRingerMode(AudioManager.RINGER_MODE_SILENT);
+    }
+
+    private String getTransitionString(int transitionType) {
+        switch (transitionType) {
+            case Geofence.GEOFENCE_TRANSITION_ENTER:
+                return "Entered Geofence";
+            case Geofence.GEOFENCE_TRANSITION_EXIT:
+                return "Exit Geofence";
+            default:
+                return "Unknonw Geofence Transition";
+        }
     }
 }
