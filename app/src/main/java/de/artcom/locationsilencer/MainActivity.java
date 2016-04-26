@@ -50,8 +50,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     public void getLocationUpdatesClicked(View view) {
         Log.d(TAG, "getLocationUpdatesClicked");
-        ((TextView) findViewById(R.id.currentLatitude)).setText("foo");
-        ((TextView) findViewById(R.id.currentLongitude)).setText("bar");
 
         LocationRequest locationRequest = new LocationRequest();
         locationRequest.setInterval(LOCATION_UPDATE_INTERVAL);
@@ -63,7 +61,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     @Override
     public void onLocationChanged(Location location) {
-        Log.d(TAG, "onLocationChanged");
+        String latitude = String.valueOf(location.getLatitude());
+        String longitude = String.valueOf(location.getLongitude());
+        ((TextView) findViewById(R.id.currentLatitude)).setText(latitude);
+        ((TextView) findViewById(R.id.currentLongitude)).setText(longitude);
     }
 
     @Override
